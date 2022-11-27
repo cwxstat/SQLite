@@ -335,16 +335,16 @@ public class SQLdb {
             let event = String(cString: queryResultCol1)
             
             
-            guard let queryResultCol2 = sqlite3_column_text(statement, 1) else {
+            guard let queryResultCol2 = sqlite3_column_text(statement, 2) else {
                 print("Query result is nil")
                 return results
             }
             let data = String(cString: queryResultCol2)
             
             
-            let num = sqlite3_column_double(statement, 2)
+            let num = sqlite3_column_double(statement, 3)
             
-            guard let queryResultTimeEnter = sqlite3_column_text(statement, 3) else {
+            guard let queryResultTimeEnter = sqlite3_column_text(statement, 4) else {
                 print("Query result is nil")
                 return results
             }

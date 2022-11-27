@@ -81,22 +81,15 @@ func DeleteAll() {
 
 
 
-func GetEvent(table:String = "Event",database: String = "goals.sqlite") -> Int64 {
-    
-    var result:Int64 = 0
+func GetEvent(table:String = "Event",database: String = "goals.sqlite") -> [SQLdbResultEvent] {
+
     let db = SQLdb()
     db.open(database)
     db.create()
     
-    
-    let r = db.resultNI(sql: "select t1key, data, num, timeEnter from \(table) where timeEnter > date('now','-17 hour') order by timeEnter desc;")
-    
-    for (_ , item) in r.enumerated() {
-        print("\(item.t1key), \(item.num), \(item.timeEnter)")
-        result+=1
-    }
+    let r = db.resultEvent(sql: "select t1key, event,data, num, timeEnter from \(table) where timeEnter > date('now','-17 hour') order by timeEnter desc;")
     
     db.close()
     
-    return result
+    return r
 }

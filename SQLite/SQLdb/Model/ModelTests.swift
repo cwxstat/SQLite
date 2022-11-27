@@ -27,11 +27,16 @@ final class ModelSQLdbTests: XCTestCase {
         db.sql(sql: "drop TABLE IF EXISTS  Event;")
         db.sql(sql: "drop TRIGGER IF EXISTS insert_Event_timeEnter;")
         var result  = GetEvent(table: "Event",database: database)
-        XCTAssertTrue(result == 0)
+        XCTAssertTrue(result.count == 0)
         AddEvent(event: "Event", data: "Data")
         AddEvent(event: "Event", data: "Data2")
-        result  = GetEvent(table: "Event")
-        XCTAssertTrue(result != 0)
+        result = GetEvent(table: "Event")
+        XCTAssertTrue(result.count != 0)
+        
+        for (_ , item) in result.enumerated() {
+            print("\(item.t1key),\(item.event), \(item.data), \(item.num), \(item.timeEnter)")
+        }
+        
         
         db.close()
     }
