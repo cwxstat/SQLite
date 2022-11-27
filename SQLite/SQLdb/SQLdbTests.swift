@@ -42,34 +42,6 @@ final class SQLdbTests: XCTestCase {
         
     }
     
-    func testStuff() throws {
-        AddGo()
-        
-        let db = SQLdb(file: "goals.sqlite")
-        db.open("goals.sqlite")
-        
-        
-        let sql = """
-        CREATE TABLE IF NOT EXISTS Go (t1key INTEGER
-                  PRIMARY KEY,data text,num double,timeEnter DATE);
-        CREATE TRIGGER IF NOT EXISTS insert_Go_timeEnter AFTER  INSERT ON Go
-          BEGIN
-            UPDATE Go SET timeEnter = DATETIME('NOW')  WHERE rowid = new.rowid;
-          END;
-        """
-        
-        let num = 12
-        db.sql(sql: sql)
-        db.sql(sql: "insert into Go (data,num) values ('Go',\(num));")
-        
-        
-        
-        let r = db.resultNI(sql: "select t1key,data,num,timeEnter from Go;")
-        
-        XCTAssertTrue(r.count >= 1)
-        print(r.count)
-        db.close()
-    }
     
     
     func testSQLdb_SQL_ResultEvent() throws {
@@ -106,11 +78,6 @@ final class SQLdbTests: XCTestCase {
         
         db.close()
         db.open("test.sqlite")
-        
-        
-        
-        
-        
     }
     
     
@@ -150,9 +117,6 @@ final class SQLdbTests: XCTestCase {
         db.close()
         db.open("test.sqlite")
         r = db.resultNI(sql: "select t1key,data,num,timeEnter from t2;")
-        
-        
-        
         
     }
     

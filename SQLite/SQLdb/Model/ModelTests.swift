@@ -38,23 +38,7 @@ final class ModelSQLdbTests: XCTestCase {
     
     
     
-    func test_Go() throws {
-        
-        let db = SQLdb()
-        
-        let  database = "goals.sqlite"
-        db.open(database)
-        
-        db.sql(sql: "drop TABLE IF EXISTS  Go;")
-        db.sql(sql: "drop TRIGGER IF EXISTS insert_Go_timeEnter;")
-        var result  = GetCount(table: "Go",database: database)
-        XCTAssertTrue(result == 0)
-        AddGo()
-        result  = GetCount(table: "Go",database: database)
-        XCTAssertTrue(result != 0)
-        
-        db.close()
-    }
+    
     
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
