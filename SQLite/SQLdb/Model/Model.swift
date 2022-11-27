@@ -8,17 +8,14 @@
 import Foundation
 import UIKit
 
-//class WorkoutDisplay: ObservableObject {
-//    @Published var display = "Actions Today: \(GetCount(table: "PushUp"))\nSit Ups:  \(GetCount(table: "SitUp"))\nKettleBell:  \(GetCount(table: "KettleBell"))"
-//}
-
-
-
+class EventDisplay: ObservableObject {
+    @Published var display = "Actions Today: \(GetEvent(table: "Event"))\n"
+}
 
 
 func AddEvent(event: String, data: String, num: Double = 1.0) {
     let db = SQLdb()
-    db.open("goals.sqlite")
+    db.open("db.sqlite")
     
     let sql = """
     CREATE TABLE IF NOT EXISTS Event (t1key INTEGER
@@ -41,7 +38,7 @@ func AddEvent(event: String, data: String, num: Double = 1.0) {
 
 func AddEntry(txt: String) {
     let db = SQLdb()
-    db.open("goals.sqlite")
+    db.open("db.sqlite")
     db.create()
     
     guard let  image = db.img(color: UIColor.green,size: CGSize(width: 20,height: 20)) else {
@@ -58,7 +55,7 @@ func AddEntry(txt: String) {
 func DeleteAll() {
     let db = SQLdb()
     
-    let database = "goals.sqlite"
+    let database = "db.sqlite"
     
     db.open(database)
     
@@ -81,7 +78,7 @@ func DeleteAll() {
 
 
 
-func GetEvent(table:String = "Event",database: String = "goals.sqlite") -> [SQLdbResultEvent] {
+func GetEvent(table:String = "Event",database: String = "db.sqlite") -> [SQLdbResultEvent] {
 
     let db = SQLdb()
     db.open(database)

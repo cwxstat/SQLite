@@ -21,7 +21,7 @@ final class ModelSQLdbTests: XCTestCase {
         
         let db = SQLdb()
         
-        let  database = "goals.sqlite"
+        let  database = "db.sqlite"
         db.open(database)
         
         db.sql(sql: "drop TABLE IF EXISTS  Event;")

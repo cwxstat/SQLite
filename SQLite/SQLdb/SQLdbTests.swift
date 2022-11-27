@@ -68,7 +68,7 @@ final class SQLdbTests: XCTestCase {
         db.sql(sql: "insert into Event (event,data,num) values ('event','data',0.2);")
         
         
-        let r = db.resultEvent(sql: "select t1key,data,num,timeEnter from Event;")
+        let r = db.resultEvent(sql: "select t1key,event,data,num,timeEnter from Event;")
         
         XCTAssertTrue(r.count >= 1)
         print("\n\n   TABLE  \n")
